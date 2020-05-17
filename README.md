@@ -15,7 +15,7 @@ CMake is used for building.
 
 # Goals & Motivation
 
-Because I can.
+Why? I'm not really sure.
 
 To get to the heart of the matter of 3D graphics programming
 as  directly as  possible,  generally minimizing  extraneous
@@ -130,7 +130,7 @@ and output files.
 ```
 cd ../cxxray_build
 cmake ../cxxray
-cmake --build . --target test_objLoader
+cmake --build . --target test_obj_loader
 ./test_obj_loader
 ```
 
@@ -138,6 +138,7 @@ cmake --build . --target test_objLoader
 
 ```
 cd ../cxxray_build
+cmake ../cxxray
 cmake --build . --target test_gamma
 ```
 
