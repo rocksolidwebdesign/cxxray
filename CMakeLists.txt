@@ -11,15 +11,15 @@ option(MORE_WARNINGS "Show lots and lots of warnings, LOTS I TELL YOU!." ON)
 
 if(MORE_WARNINGS)
   if(MSVC)
-    add_compile_options("/Wall")
+    #add_compile_options("/Wall")
   else()
     add_compile_options("-Wall" "-Wextra" "-Wpedantic" "-Wconversion")
   endif()
 endif()
 
-if(MSVC)
-  set(CMAKE_CL_64 ON)
-endif()
+#if(MSVC)
+#  set(CMAKE_CL_64 ON)
+#endif()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 

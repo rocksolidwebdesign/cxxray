@@ -1,7 +1,7 @@
 Barycentric coordinates of a  triangle are relative to edges
 of the  triangle rather than the  standard perpendicular x/y
 axes. Using  such a system  allows interpolation of  a value
-smothely from one vertex to another.
+smoothely from one vertex to another.
 
 Any  two points  on the  triangle may  be used  to form  the
 implicit  equation of  a  line. We  can  use these  implicit
@@ -192,7 +192,7 @@ shape.
 We can  use this to  determine whether  the point is  in the
 triangle and so whether it should be drawn or not.
 
-We can use this to  smothely vary values across the triangle
-smothely  increasing  the  lighting  at each  pixel  from  a
+We can use this to  smoothely vary values across the triangle
+smoothely  increasing  the  lighting  at each  pixel  from  a
 lowly-lit  vertex to  a highly-lit  vertex depending  on how
 close it is to the lighter or darker vertex
