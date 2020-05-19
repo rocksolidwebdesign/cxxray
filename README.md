@@ -204,7 +204,7 @@ cmake --build . --parallel 4 --target test_obj_loader
 ## Gamma
 
 ```
-cmake --build . --target test_gamma
+cmake --build . --parallel 4 --target test_gamma
 ```
 
 The  gamma test  will generate  an image  where one  half is
