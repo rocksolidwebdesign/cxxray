@@ -52,11 +52,11 @@ int gammaTestMain(int argc, char** argv)
     //------------------------------------------------------------
     cout << "Generating left half (gamma adjusted)..." << endl;
 
-    auto const intens = pow(a, 1.0/gamma);
+    auto const gammaIntens = pow(a, 1.0/gamma);
 
     for (PixVal y = 0; y < h; y++) {
         for (PixVal x = 0; x < w2; x++) {
-            img.set(x, y, toRgb(intens));
+            img.set(x, y, toRgb(gammaIntens));
         }
     }
 

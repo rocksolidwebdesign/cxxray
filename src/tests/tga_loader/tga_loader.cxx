@@ -39,9 +39,9 @@ int tgaLoaderTestMain(int argc, char** argv)
     // Input File Arguments
     string infileArg = argc > 1 ? argv[1] : "";
 
-    string infile = infileArg != ""
+    string infile = fs::absolute((infileArg != ""
         ? infileArg
-        : getDefaultTex();
+        : getDefaultTex())).make_preferred().string();
 
     if (!fs::is_regular_file(infile))
     {
@@ -52,9 +52,9 @@ int tgaLoaderTestMain(int argc, char** argv)
     // Output File Arguments
     string outfileArg = argc > 2 ? argv[2] : "";
 
-    string outfile = outfileArg != ""
+    string outfile = fs::absolute((outfileArg != ""
         ? outfileArg
-        : getDefaultOutfile();
+        : getDefaultOutfile())).make_preferred().string();
 
     if (!fs::is_directory(fs::path(outfile).parent_path()))
     {

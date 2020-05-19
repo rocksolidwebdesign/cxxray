@@ -21,6 +21,7 @@ int objLoaderTestMain(int argc, char** argv)
     using std::cout;
     using std::endl;
     using std::string;
+    using std::unordered_map;
 
     namespace fs = std::filesystem;
 
@@ -29,9 +30,9 @@ int objLoaderTestMain(int argc, char** argv)
     // Input File Arguments
     string infileArg = argc > 1 ? argv[1] : "";
 
-    string infile = infileArg != ""
+    string infile = fs::absolute((infileArg != ""
         ? infileArg
-        : getDefaultPath();
+        : getDefaultPath())).make_preferred().string();
 
     if (!fs::is_regular_file(infile))
     {
@@ -42,7 +43,7 @@ int objLoaderTestMain(int argc, char** argv)
     // Run Test
     cout << "Loading: " << infile << endl;
 
-    std::unordered_map<std::string,TextureImage> textures;
+    unordered_map<string,TextureImage> textures;
 
     auto obj = loadWavefrontObjFile(infile, textures);
 

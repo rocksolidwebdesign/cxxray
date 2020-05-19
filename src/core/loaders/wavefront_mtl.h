@@ -19,7 +19,7 @@ namespace CxxRay {
 inline
 void loadWavefrontMtlFile(
     Mesh & mesh,
-    std::string const & filePath,
+    std::string const & filePathArg,
     std::unordered_map<std::string,TextureImage> & textures)
 {
     using std::cout;
@@ -67,10 +67,10 @@ void loadWavefrontMtlFile(
     string line{""};
     string tok{""};
 
-    auto fh = ifstream{filePath};
+    auto fh = ifstream{filePathArg};
 
     if (!fh.is_open()) {
-        cout << "loadWavefrontMtlFile(): File not found " << filePath << endl;
+        cout << "loadWavefrontMtlFile(): File not found " << filePathArg << endl;
         return;
     }
 
@@ -110,18 +110,16 @@ void loadWavefrontMtlFile(
                 continue;
             }
 
-            string const filePath = m[1];
+            string const texPath = m[1];
 
-            if (textures.count(filePath) == 0)
+            if (textures.count(texPath) == 0)
             {
-                cout << "Loading texture: " << filePath << endl;
+                cout << "Loading texture: " << texPath << endl;
 
-                textures[filePath] = loadTargaFile(filePath);
+                textures[texPath] = loadTargaFile(texPath);
             }
 
-            auto & mtl = mesh.mtls[mtlName];
-
-            mtl.texName = filePath;
+            mesh.mtls[mtlName].texName = texPath;
         }
         else if (tok == "Kd")
         {

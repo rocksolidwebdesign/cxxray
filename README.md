@@ -9,7 +9,7 @@ For some math details see:
 
 [barycentric.md](notes/barycentric.md)
 
-# Requirements
+## Requirements
 
 A modern C++ compiler supporting C++17.
 
@@ -22,7 +22,7 @@ Tested on the following:
 - Apple Clang 11.0.3
 - Visual Studio 2017
 
-# Goals & Motivation
+## Goals & Motivation
 
 To get to the heart of the matter of 3D graphics programming
 as  directly as  possible,  generally minimizing  extraneous
@@ -34,7 +34,7 @@ provided a C++ compiler is availabe  (if you are on Linux or
 you use  the Mac OS  `brew` command  then a C++  compiler is
 probably already available).
 
-# FAQ
+## FAQ
 
 - Q: "What does it do?"
 - A: "It generates and saves an image file from a textured 3D model."
@@ -51,33 +51,24 @@ probably already available).
 - Q: "Which file formats does it support?"
 - A: "OBJ models and 24-bit uncompressed TGA textures"
 
-# Build
+# Build & Run
+
+## Linux & Mac
 
 Generate build and run the project.
 
-The ctest command will run the actual compiled
+*See the OS specific notes for your OS below.*
+
+The `ctest` command will run the actual compiled
 binaries using some default arguments.
 
 ```
 mkdir ../cxxray_build
 cd ../cxxray_build
 cmake -DCMAKE_BUILD_TYPE=Release ../cxxray
-cmake --build .
+cmake --build . --parallel 4
 ctest --verbose
 ```
-
-# Windows
-
-Install  Visual  Studio  for  usage  with  C++  and  open  a
-developer tools command prompt, run cmake from here.
-
-When  generating Visual  Studio  projects  for this  project
-using  CMake  and  subsequently   building  on  the  command
-line, the  compiled binaries  will end  up in  `.\Debug` and
-`.\Release` folders  respectively and  with the  `.exe` file
-extension.
-
-Modify any commands below accordingly.
 
 # Mac
 
@@ -89,10 +80,42 @@ CMake can be installed with.
 brew install cmake
 ```
 
-# Rasterizer
+# Linux
+
+Install a compiler and build tools.
 
 ```
-cmake --build . --target draw_raster
+sudo apt-get install build-essential g++ make cmake
+```
+
+# Windows
+
+Install  Visual  Studio  for  usage  with  C++, open  a 64-bit
+developer tools command prompt and run `cmake` from here.
+
+Binaries  will end  up in  `.\Debug` and `.\Release` folders
+respectively and  with the  `.exe` file extension.
+
+```
+mkdir ..\cxxray_build
+cd ..\cxxray_build
+cmake -G"Visual Studio 15 2017 Win64" ..\cxxray
+cmake --build . --parallel 4 --config Release
+ctest --verbose -C Release
+```
+
+Build 32-bit with
+
+```
+cmake -G"Visual Studio 15 2017" ..\cxxray
+```
+
+# Main Targets
+
+## Rasterizer
+
+```
+cmake --build . --parallel 4 --target draw_raster
 ```
 
 This will  draw a scene  using rasterization and  will write
@@ -120,10 +143,10 @@ folder.
 ./draw_raster ./data/models/icosphere.obj ./data/tex/UVCheckerMap16-512.tga
 ```
 
-# Raycaster
+## Raycaster
 
 ```
-cmake --build . --target draw_raycast
+cmake --build . --parallel 4 --target draw_raycast
 ```
 
 This will draw a sphere using raycasting and will write the
@@ -140,12 +163,12 @@ This can draw triangles too, but a sphere is more interesting.
 - Q: "These aren't really tests?"
 - A: "They are more like a useful playground in which I can cheaply try things and confirm behavior."
 
-# TGA Image loader
+## TGA Image loader
 
 NOTE: The TGA loader supports only 24-bit uncompressed TGA files.
 
 ```
-cmake --build . --target test_tga_loader
+cmake --build . --parallel 4 --target test_tga_loader
 ```
 
 The TGA image  loader test will read an input  file and save
@@ -160,17 +183,25 @@ The first and second arguments if provided specify the input
 and output files.
 
 ```
-./test_tga_loader input.tga output.tga
+./test_tga_loader ./data/tex/UVCheckerMap01-512.tga checker_01_out.tga
 ```
 
-# OBJ 3D Model Loader
+## OBJ 3D Model Loader
+
+The OBJ loader test operates similarly to the TGA loader test.
+
+It will read a default file or a file argument.
+
+If the format is valid and provided the restrictions on
+model export (see below) are met, the test should pass.
 
 ```
-cmake --build . --target test_obj_loader
+cmake --build . --parallel 4 --target test_obj_loader
 ./test_obj_loader
+./test_obj_loader ./data/models/monkey.obj
 ```
 
-# Gamma
+## Gamma
 
 ```
 cmake --build . --target test_gamma

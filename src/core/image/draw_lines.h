@@ -101,28 +101,28 @@ drawVerticalLine(
     PixVal const x0, PixVal const y0,
     PixVal const y1)
 {
-    auto const is_in_bounds = (
+    auto const isXInBounds = (
         x0 > 0 &&
         x0 < nx
     );
 
-    if (!is_in_bounds) {
+    if (!isXInBounds) {
         return;
     }
 
-    auto maxY = y0 > y1 ? y0 : y1;
-    auto minY = y0 < y1 ? y0 : y1;
+    auto const maxY = y0 > y1 ? y0 : y1;
+    auto const minY = y0 < y1 ? y0 : y1;
 
     auto curY = minY;
 
     while (curY <= maxY)
     {
-        auto const is_in_bounds = (
+        auto const isYInBounds = (
             curY >= 0 &&
             curY < ny
         );
 
-        if (is_in_bounds) {
+        if (isYInBounds) {
             img.set(x0, curY, color);
         }
 
@@ -139,28 +139,28 @@ drawHorizontalLine(
     PixVal const y0, PixVal const x0,
     PixVal const x1)
 {
-    auto const is_in_bounds = (
+    auto const isYInBounds = (
         y0 >= 0 &&
         y0 < ny
     );
 
-    if (!is_in_bounds) {
+    if (!isYInBounds) {
         return;
     }
 
-    auto maxX = x0 > x1 ? x0 : x1;
-    auto minX = x0 < x1 ? x0 : x1;
+    auto const maxX = x0 > x1 ? x0 : x1;
+    auto const minX = x0 < x1 ? x0 : x1;
 
     auto curX = minX;
 
     while (curX <= maxX)
     {
-        auto const is_in_bounds = (
+        auto const isXInBounds = (
             curX >= 0 &&
             curX < nx
         );
 
-        if (is_in_bounds) {
+        if (isXInBounds) {
             img.set(curX, y0, color);
         }
 
