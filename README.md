@@ -1,6 +1,6 @@
 # Overview
 
-A software rasterizer and raytracer.
+A software rasterizer and raycaster.
 
 This code is intended for educational purposes
 for those interested in the math behind 3D graphics.
